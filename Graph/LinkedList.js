@@ -10,21 +10,19 @@ class LinkedList {
       return node;
   }
   appendNode(item) {
-    class Node {
-      constructor(item) {
-        this.item = item;
-        this.next = null;
-      }
+    let Node = function() {
+      this.item = item;
+      this.next = null;
     }
     let newNode = new Node(item);
     if(this.head === null) {
       this.head = newNode;
     } else {
       let currentNode = this.head;
-        while(currentNode.next !== null) {
-            currentNode = currentNode.next;
-        }
-        currentNode.next = newNode;
+      while(currentNode.next !== null) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = newNode;
     }
   }
   removeNode(item) {
@@ -42,12 +40,12 @@ class LinkedList {
     }
     return allNodes;
   }
-  tourAllNode(what) {
+  tourAllNodes(what) {
     let node = this.head;
-      while(node !== null) {
-        what(node);
-        node = node.next;
-      }
+    while(node !== null) {
+      what(node.item);
+      node = node.next;
+    } 
   }
 }
 export {LinkedList}

@@ -1,25 +1,32 @@
-import {LinkedList} from './LinkedList.js'
+import {Graph} from './Graph.js'
 
 console.log('hello graph');
 
-class Graph {
-  constructor() {
-    
-  }
+let graph = new Graph();
+for(let i=0; i<9; i++) {
+  graph.addNode(i);  
 }
+graph.addEdge(0, 1);
+graph.addEdge(1, 2);
+graph.addEdge(1, 3);
+graph.addEdge(2, 4);
+graph.addEdge(2, 3);
+graph.addEdge(3, 4);
+graph.addEdge(3, 5);
+graph.addEdge(5, 6);
+graph.addEdge(5, 7);
+graph.addEdge(6, 8);
 
-let linkedList = new LinkedList();
-for(let i=0; i<10; i++) {
-  linkedList.appendNode(i);
-}
+graph.dfs(0, node => {
+  console.log(`dfs node item=${node.item}, visited=${node.visited}`);
+})
 
-console.log('getAllNode =', linkedList.getAllNode());
-linkedList.removeNode(5);
-linkedList.removeNode(6);
-console.log('getAllNode =', linkedList.getAllNode());
-
-// linkedList.tourAllNode(node => {
-//     console.log('node item =', node.item);
-// })
+graph.nodes.forEach(node => {
+  node.visited = false;
+})
+console.log(' ');
+graph.bfs(0, node => {
+  console.log(`bfs node item=${node.item}, visited=${node.visited}`);
+})
 
 console.log('good bye');
