@@ -17,7 +17,7 @@ graph.addEdge(5, 6);
 graph.addEdge(5, 7);
 graph.addEdge(6, 8);
 
-graph.dfs(0, node => {
+graph.dfs(3, node => {
   console.log(`dfs node item=${node.item}, visited=${node.visited}`);
 })
 
@@ -27,6 +27,13 @@ graph.nodes.forEach(node => {
 console.log(' ');
 graph.bfs(0, node => {
   console.log(`bfs node item=${node.item}, visited=${node.visited}`);
+})
+graph.nodes.forEach(node => {
+  node.visited = false;
+})
+console.log(' ');
+graph.dfsR(0, node => {
+  console.log(`dfsR node item=${node.item}, visited=${node.visited}`);
 })
 
 console.log('good bye');

@@ -46,6 +46,20 @@ class Graph {
       what(node);
     }
   }
+  dfsR(index, what) {
+    function recursive(node, what) {
+      if(node !== null) {
+        node.visited = true;
+        what(node);
+        node.adjacent.tourAllNodes(n => {
+          if(n.visited === false) {
+            recursive(n, what);
+          }
+        })
+      }
+    }
+    recursive(this.nodes[index], what);
+  }
   bfs(index, what) {
     let root = this.nodes[index];
     let queue = new Queue();
