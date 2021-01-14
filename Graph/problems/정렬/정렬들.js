@@ -31,7 +31,8 @@ InsertSort(data);
 console.log('InsertSort =', data);
 //퀵정렬
 //data = [9, 8, 1, 3, 2];
-data = [5, 1, 6, 3, 4, 2, 7];
+//data = [5, 1, 6, 3, 4, 2, 7];
+data = [38, 27, 43, 3, 9, 82, 10];
 function QuickSort(data, start, end) {
   let diff = end-start;
   if(diff < 2) {
@@ -42,34 +43,35 @@ function QuickSort(data, start, end) {
     let left=start, right=end;
     let pivot = parseInt(start+(diff/2+0.5));
 
-    function swap() {
-      [data[left], data[right]] = [data[right], data[left]];
+    function swap(a, b) {
+      [data[a], data[b]] = [data[b], data[a]];
     }
-    while(left < right) {
+    while(left <= right) {
+      if(right === pivot) {
+        swap(left, right);
+        pivot = left;
+        left++;
+        right--;
+      } else if(left === pivot) {
+        swap(left, right);
+        pivot = right;
+        left++;
+        right--;
+      }
       if(data[left] > data[pivot] && data[pivot] > data[right]) {
-        swap();
+        swap(left, right);
         left++;
         right--;
       }
       if(data[left] < data[pivot]) {
         left++;
-        if(left >= pivot) {
-          swap();
-          [left, right] = [right, left];
-          pivot = left-1;
-        }
       }
       if(data[right] > data[pivot]) {
         right--;
-        if(right <= pivot) {
-          swap();
-          [left, right] = [right, left];
-          pivot = right;
-        }
       }
     }
-    QuickSort(data, start, pivot);
-    QuickSort(data, pivot+1, end);
+    QuickSort(data, start, right);
+    QuickSort(data, left, end);
   }
 }
 QuickSort(data, 0, data.length-1);
