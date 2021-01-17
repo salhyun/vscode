@@ -1,3 +1,102 @@
+(function convertURL() {
+  let s = 'Mr John Smith';
+  let result = '';
+  let pos=0;
+  let i=0;
+  for(i=0; i<s.length; i++) {
+    if(s.charAt(i) === ' ') {
+      result += s.substr(pos, i-pos) + '%20';
+      pos = i+1;
+    }
+  }
+  if(pos < i) {
+    result += s.substr(pos, i-pos);
+  }
+  console.log('result =', result);
+})();
+
+(function onefive() {
+  let s1 = ['pale', 'pales', 'pale', 'pale'];
+  let s2 = ['ple', 'pale', 'bale', 'bake'];
+
+  s1 = s1.map(element => {
+    return element.split('').sort().join('');
+  });
+  s2 = s2.map(element => {
+    return element.split('').sort().join('');
+  });
+
+  let answer=0;
+  for(let i=0; i<s1.length; i++) {
+    if(s1[i].length === s2[i].length) {
+      let diff=0;
+      let map = new Map();
+      for(let n=0; n<s1[i].length; n++) {
+        map.set(s1[i].charAt(n), n);
+      }
+      for(let n=0; n<s2[i].length; n++) {
+        if(map.get(s2[i].charAt(n)) === undefined) {
+          diff++;
+        }
+      }
+      if(diff <= 1) {
+        console.log(`s1=${s1[i]}, s2=${s2[i]} is true`);
+        answer++;
+      } else {
+        console.log(`s1=${s1[i]}, s2=${s2[i]} is false`);
+      }
+
+    } else {
+      let what = s1[i].length < s2[i].length ? s2[i].substr(s1[i]) : s1[i].substr(s2[i]);
+      if(what) {
+        answer++;
+        console.log(`s1=${s1[i]}, s2=${s2[i]} is true`);
+      } else {
+        console.log(`s1=${s1[i]}, s2=${s2[i]} is false`);
+      }
+    }
+  }
+  console.log('answer =', answer);
+
+})();
+
+
+let s = 'abcdef';
+let r = '';
+let b = 'cbabadcbbabbcbabaabccbabc';
+
+function removeChar(s, index) {
+  let r = '';
+  for(let n=0; n<s.length; n++) {
+    if(index !== n) {
+      r += s.charAt(n);
+    }
+  }
+  return r;
+}
+let leafCount=0;
+let allPermutation = [];
+function permutation(sub, char, depth) {
+  if(depth <= 0) {
+    console.log(`leafCount=${leafCount++}, char=${char}`);
+    allPermutation.push(char);
+  } else {
+    for(let i=0; i<depth; i++) {
+      permutation(removeChar(sub, i), char+sub.charAt(i), depth-1);
+    }
+  }  
+}
+permutation(s, '', s.length);
+
+for(let i=0; i<allPermutation.length; i++) {
+  for(let n=0; n<allPermutation.length; n++) {
+    if(i !== n && allPermutation[i] === allPermutation[n]) {
+      console.log('wtf!!');
+    }
+  }
+}
+
+
 let system=16;
 let count=16;
 let people=2;
