@@ -35,7 +35,7 @@ console.log(' ');
 graph.dfsR(0, node => {
   console.log(`dfsR node item=${node.item}, visited=${node.visited}`);
 })
-
+//미로찾기
 let maze = {width: 6, height: 4,
   data: [
     [1, 0, 1, 1, 1, 1],

@@ -36,7 +36,6 @@
   s2 = s2.map(element => {
     return element.split('').sort().join('');
   });
-
   let answer=0;
   for(let i=0; i<s1.length; i++) {
     if(s1[i].length === s2[i].length) {
