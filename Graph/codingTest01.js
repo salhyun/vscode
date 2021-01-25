@@ -1,3 +1,5 @@
+import {BinaryTree} from './BinaryTree.js'
+
 (function climbStairs() {
   //let step = [10, 15, 20];
   let step = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1];
@@ -21,5 +23,4 @@
   steping(1, 0);
 
   console.log('LAST min =', min);
-
 })();
